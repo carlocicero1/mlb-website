@@ -1,8 +1,8 @@
 <template>
   <div class="teams">
-    <h1>MLB Teams</h1>
+    <h1> {{ this.$route.params.league }} Teams</h1>
     <div v-for="(team, i) in teams" :key="i">
-      {{ team.name_display_full }}
+      <router-link :to="`${team.league}/${trimName(team.mlb_org)}`"> {{ team.name_display_full }} </router-link>
       <h4>{{ team.venue_short }}</h4>
     </div>
   </div>
@@ -15,6 +15,13 @@ export default {
   name: 'Teams',
   computed: {
     ...mapState(['teams'])
+  },
+  methods: {
+    trimName: function (teamName) {
+      teamName = teamName.toLowerCase().replace(/\s/g, '')
+      console.log(teamName)
+      return teamName.toLowerCase().trim()
+    }
   },
   async created () {
     const league = this.$route.params.league
