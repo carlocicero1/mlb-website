@@ -1,12 +1,19 @@
 <template>
   <div class="teams">
-    <h1> {{ this.$route.params.league }} Teams</h1>
-    <div v-for="(team, i) in teams" :key="i">
-      <router-link :to="getPath(team.league, team.mlb_org)"> {{ team.name_display_full }} </router-link>
-      <h4>{{ team.venue_short }}</h4>
+    <div class="text-center">
+      <h1> {{ this.$route.params.league }} Teams</h1>
+    </div>
+    <div class="row">
+      <div v-for="(team, i) in teams" :key="i" class="col-4 text-center team">
+        <router-link :to="getPath(team.mlb_org_id)">
+          <img :src="`http://www.mlbstatic.com/team-logos/${team.mlb_org_id}.svg`" class="team__logo">
+          {{ team.name_display_full }}
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
+
 <script>
 import { mapState } from 'vuex'
 
@@ -16,11 +23,10 @@ export default {
     ...mapState(['teams'])
   },
   methods: {
-    getPath: function (league, team) {
-      team = team.toLowerCase().replace(/\s/g, '_')
+    getPath: function (teamId) {
       return {
         name: 'players',
-        params: { league, team }
+        params: { teamId }
       }
     }
   },
@@ -31,3 +37,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.team {
+  margin: 15px 0px;
+
+  &__logo {
+    max-height: 100px;
+  }
+}
+</style>

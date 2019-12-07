@@ -6,11 +6,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    teams: []
+    teams: [],
+    players: []
   },
   mutations: {
     SET_TEAMS (state, data) {
       state.teams = data
+    },
+    SET_PLAYERS (state, data) {
+      state.players = data
     }
   },
   actions: {
@@ -26,6 +30,17 @@ export default new Vuex.Store({
       const filteredTeams = row.filter(item => item.league === selectedLeague)
 
       commit('SET_TEAMS', filteredTeams)
+    },
+    async getPlayersByTeam ({ commit }, teamId) {
+      let {
+        data: {
+          roster_40: {
+            queryResults: { row }
+          }
+        }
+      } = await api.getPlayersByTeam(teamId)
+
+      commit('SET_PLAYERS', row)
     }
   }
 })
