@@ -4,7 +4,7 @@
     <div class='row'>
       <div v-for="(player, i) in players" :key="i" class="col-4 text-center player">
         <router-link :to="getPath(player.player_id)">
-          <Player
+          <PlayerModal
             class="col-4 text-center player"
             :player-id="player.player_id"
             :full-name="player.name_display_first_last"
@@ -17,12 +17,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import Player from '@/components/Player'
+import PlayerModal from '@/components/PlayerModal'
 
 export default {
   name: 'players',
   components: {
-    Player
+    PlayerModal
   },
   methods: {
     getPath: (playerId) => {
