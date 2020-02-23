@@ -6,5 +6,8 @@ export default {
   },
   getPlayersByTeam (teamId) {
     return axios.get(`http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id='${teamId}'`)
+  },
+  getPlayerById (playerId) {
+    return axios.get(`http://lookup-service-prod.mlb.com/json/named.player_info.bam?sport_code='mlb'&player_id='${playerId}'`)
   }
 }

@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     teams: [],
-    players: []
+    players: [],
+    player: []
   },
   mutations: {
     SET_TEAMS (state, data) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     SET_PLAYERS (state, data) {
       state.players = data
+    },
+    SET_PLAYER (state, data) {
+      state.player = data
     }
   },
   actions: {
@@ -41,6 +45,16 @@ export default new Vuex.Store({
       } = await api.getPlayersByTeam(teamId)
 
       commit('SET_PLAYERS', row)
+    },
+    async getPlayerById ({ commit }, selectedPlayer) {
+      let {
+        data: {
+          player_info: {
+            queryResults: { row }
+          }
+        }
+      } = await api.getPlayerById(selectedPlayer)
+      commit('SET_PLAYER', row)
     }
   }
 })

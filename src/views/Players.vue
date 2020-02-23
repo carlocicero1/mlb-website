@@ -1,18 +1,16 @@
 <template>
   <div class="players">
     <h1>Players</h1>
-    <!-- <div v-for="(player, i) in players" :key="i" class="col-4 text-center">
-      <img :src="`https://content.mlb.com/images/headshots/current/60x60/${player.player_id}@2x.png`">
-      {{ player }}
-    </div> -->
     <div class='row'>
-    <Player
-      v-for="(player, i) in players"
-      :key="i"
-      class="col-4 text-center player"
-      :player-id="player.player_id"
-      :full-name="player.name_display_first_last"
-    />
+      <div v-for="(player, i) in players" :key="i" class="col-4 text-center player">
+        <router-link :to="getPath(player.player_id)">
+          <Player
+            class="col-4 text-center player"
+            :player-id="player.player_id"
+            :full-name="player.name_display_first_last"
+          />
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +23,14 @@ export default {
   name: 'players',
   components: {
     Player
+  },
+  methods: {
+    getPath: (playerId) => {
+      return {
+        name: 'player',
+        params: { playerId }
+      }
+    }
   },
   computed: {
     ...mapState(['players'])
