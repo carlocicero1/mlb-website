@@ -30,7 +30,6 @@ export default new Vuex.Store({
           }
         }
       } = await api.getAllTeams()
-
       const filteredTeams = row.filter(item => item.league === selectedLeague)
 
       commit('SET_TEAMS', filteredTeams)
@@ -43,7 +42,6 @@ export default new Vuex.Store({
           }
         }
       } = await api.getPlayersByTeam(teamId)
-
       commit('SET_PLAYERS', row)
     },
     async getPlayerById ({ commit }, selectedPlayer) {

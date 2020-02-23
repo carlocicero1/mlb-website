@@ -14,6 +14,8 @@
       :birthday="player.birth_date"
       :city="player.birth_city"
       :country="player.birth_country"
+      :nickname="player.name_nick"
+      :debut="player.pro_debut_date"
     />
   </div>
 </template>

@@ -2,6 +2,7 @@
   <div class="player">
       <img :src="`https://content.mlb.com/images/headshots/current/60x60/${playerId}@2x.png`">
       <h1>{{ fullName }}</h1>
+      <h6>{{ nickname }} </h6>
       <h5> {{ position }}, {{ team }} </h5>
       <table>
         <tr>
@@ -9,7 +10,7 @@
           <td>{{ age }}</td>
           <tr>
               <td>Born: </td>
-              <td>{{birthday}} ({{city}}, {{country}})</td>
+              <td>{{getDate(birthday)}} ({{city}}, {{country}})</td>
           </tr>
         <tr>
         <tr>
@@ -18,7 +19,7 @@
         </tr>
         <tr>
           <td>Weight: </td>
-          <td>{{ weight }}</td>
+          <td>{{ weight }} lbs</td>
         </tr>
         <tr>
           <td>Bats: </td>
@@ -28,6 +29,10 @@
           <td>Throws: </td>
           <td>{{ armThrow }}</td>
         </tr>
+        <tr>
+          <td>MLB Debut: </td>
+          <td>{{ getDate(debut) }}</td>
+        </tr>
     </table>
   </div>
 </template>
@@ -35,6 +40,12 @@
 <script>
 export default {
   name: 'player',
+  methods: {
+    getDate: (date) => {
+      const $date = new Date(date)
+      return $date.toDateString()
+    }
+  },
   props: {
     playerId: String,
     fullName: String,
@@ -48,7 +59,9 @@ export default {
     team: String,
     birthday: String,
     city: String,
-    country: String
+    country: String,
+    nickname: String,
+    debut: String
   }
 }
 </script>

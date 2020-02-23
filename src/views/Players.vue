@@ -1,5 +1,8 @@
 <template>
   <div class="players">
+    <Banner
+    class="col-4 text-center banner"
+    :team-name="players[0].team_name"/>
     <h1>Players</h1>
     <div class='row'>
       <div v-for="(player, i) in players" :key="i" class="col-4 text-center player">
@@ -18,11 +21,13 @@
 <script>
 import { mapState } from 'vuex'
 import PlayerModal from '@/components/PlayerModal'
+import Banner from '@/components/TeamBanner'
 
 export default {
   name: 'players',
   components: {
-    PlayerModal
+    PlayerModal,
+    Banner
   },
   methods: {
     getPath: (playerId) => {
