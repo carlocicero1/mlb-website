@@ -35,7 +35,7 @@ export default {
   async created () {
     let playerId = this.$route.params.playerId
     this.$store.dispatch('getPlayerById', playerId)
-    console.log(playerId)
+    // console.log(playerId)
   }
 }
 </script>
