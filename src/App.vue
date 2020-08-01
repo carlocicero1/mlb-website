@@ -1,14 +1,31 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <!-- <router-link to="/teams">Teams</router-link> -->
-
-      <router-view></router-view>
-
+    <div class='navbar'>
+      <Navbar
+      v-bind:league="league"
+      v-bind:team="players"
+      v-bind:player="player"
+      />
     </div>
+      <router-view></router-view>
   </div>
 </template>
+<script>
+import Navbar from '@/components/Navbar.vue'
+import { mapState } from 'vuex'
+
+export default {
+  name: 'navbar',
+  components: {
+    Navbar
+  },
+  computed: {
+    ...mapState(['league']),
+    ...mapState(['players']),
+    ...mapState(['player'])
+  }
+}
+</script>
 
 <style lang="scss">
 #app {

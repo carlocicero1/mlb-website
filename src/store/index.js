@@ -8,18 +8,8 @@ export default new Vuex.Store({
   state: {
     teams: [],
     players: [],
-    player: []
-  },
-  mutations: {
-    SET_TEAMS (state, data) {
-      state.teams = data
-    },
-    SET_PLAYERS (state, data) {
-      state.players = data
-    },
-    SET_PLAYER (state, data) {
-      state.player = data
-    }
+    player: [],
+    league: []
   },
   actions: {
     async getTeamsByLeague ({ commit }, selectedLeague) {
@@ -33,6 +23,7 @@ export default new Vuex.Store({
       const filteredTeams = row.filter(item => item.league === selectedLeague)
 
       commit('SET_TEAMS', filteredTeams)
+      commit('SET_LEAGUE', selectedLeague)
     },
     async getPlayersByTeam ({ commit }, teamId) {
       let {
@@ -42,6 +33,7 @@ export default new Vuex.Store({
           }
         }
       } = await api.getPlayersByTeam(teamId)
+      console.log(row)
       commit('SET_PLAYERS', row)
     },
     async getPlayerById ({ commit }, selectedPlayer) {
@@ -53,6 +45,20 @@ export default new Vuex.Store({
         }
       } = await api.getPlayerById(selectedPlayer)
       commit('SET_PLAYER', row)
+    }
+  },
+  mutations: {
+    SET_TEAMS (state, data) {
+      state.teams = data
+    },
+    SET_PLAYERS (state, data) {
+      state.players = data
+    },
+    SET_PLAYER (state, data) {
+      state.player = data
+    },
+    SET_LEAGUE (state, data) {
+      state.league = data
     }
   }
 })
