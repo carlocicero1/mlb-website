@@ -33,7 +33,6 @@ export default new Vuex.Store({
           }
         }
       } = await api.getPlayersByTeam(teamId)
-      console.log(row)
       commit('SET_PLAYERS', row)
     },
     async getPlayerById ({ commit }, selectedPlayer) {
