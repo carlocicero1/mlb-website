@@ -1,7 +1,7 @@
 <template>
   <div class="player">
     <Player
-      class="col-4 text-center player"
+      class="col-4 text-center"
       :player-id='player.player_id'
       :full-name="player.name_display_first_last"
       :height="player.height_feet + `'` + player.height_inches"
@@ -35,17 +35,19 @@ export default {
   async created () {
     let playerId = this.$route.params.playerId
     this.$store.dispatch('getPlayerById', playerId)
-    // console.log(playerId)
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.team {
-  margin: 15px 0px;
-
-  &__logo {
-    max-height: 100px;
-  }
+.app {
+  display: flex;
+  height: 100%;
+}
+.player {
+  display: flex;
+  justify-content: center;
+  margin: 0px 50px;
+  padding: 10px 10px;
 }
 </style>

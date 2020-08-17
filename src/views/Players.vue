@@ -48,11 +48,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.team {
-  margin: 15px 0px;
-
-  &__logo {
-    max-height: 100px;
+  h1,.row a {
+    display: flex;
+    justify-content: center;
   }
-}
+  .banner.col-4.text-center.banner{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+  }
 </style>
