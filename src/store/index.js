@@ -33,6 +33,7 @@ export default new Vuex.Store({
           }
         }
       } = await api.getPlayersByTeam(teamId)
+
       commit('SET_PLAYERS', row)
     },
     async getPlayerById ({ commit }, selectedPlayer) {
@@ -43,21 +44,26 @@ export default new Vuex.Store({
           }
         }
       } = await api.getPlayerById(selectedPlayer)
+
       commit('SET_PLAYER', row)
     }
   },
   mutations: {
     SET_TEAMS (state, data) {
       state.teams = data
+      sessionStorage.setItem('teams', data)
     },
     SET_PLAYERS (state, data) {
       state.players = data
+      sessionStorage.setItem('players', data[0].team_id)
     },
     SET_PLAYER (state, data) {
       state.player = data
+      sessionStorage.setItem('player', data)
     },
     SET_LEAGUE (state, data) {
       state.league = data
+      sessionStorage.setItem('league', data)
     }
   }
 })

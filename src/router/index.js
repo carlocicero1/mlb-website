@@ -10,17 +10,17 @@ const routes = [
     component: () => import(/* webpackChunkName: "Home" */ '@/views/Home.vue')
   },
   {
-    path: '/teams/:league',
+    path: '/leagues/:league/teams',
     name: 'teams',
     component: () => import(/* webpackChunkName: "Teams" */ '@/views/Teams.vue')
   },
   {
-    path: '/teams/:teamId',
+    path: '/teams/:teamId/players',
     name: 'players',
     component: () => import(/* webpackChunkName: "Players" */ '@/views/Players.vue')
   },
   {
-    path: '/teams/player/:playerId',
+    path: '/teams/players/:playerId',
     name: 'player',
     component: () => import(/* webpackChunkName: "Player" */ '@/views/Player.vue')
   }

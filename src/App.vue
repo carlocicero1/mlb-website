@@ -20,9 +20,10 @@ export default {
     Navbar
   },
   computed: {
-    ...mapState(['league']),
-    ...mapState(['players']),
-    ...mapState(['player'])
+    ...mapState([
+      'league',
+      'players',
+      'player'])
   }
 }
 </script>

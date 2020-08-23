@@ -32,9 +32,12 @@ export default {
   computed: {
     ...mapState(['player'])
   },
-  async created () {
+  async beforeCreate () {
     let playerId = this.$route.params.playerId
+    console.log(sessionStorage.getItem('players'))
     this.$store.dispatch('getPlayerById', playerId)
+    this.$store.dispatch('getPlayersByTeam', sessionStorage.getItem('players'))
+    this.$store.dispatch('getTeamsByLeague', sessionStorage.getItem('league'))
   }
 }
 </script>

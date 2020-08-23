@@ -9,13 +9,13 @@
     <div>|</div>
     <router-link :to="leagueLink(league)">{{ league }} teams</router-link>
     <div>|</div>
-    <div class="link">{{ team[0].team_name }}</div>
+    <div class="link">{{ players[0].team_name }}</div>
   </template>
   <template v-if="this.$route.params.playerId">
     <div>|</div>
     <router-link :to="leagueLink(league)">{{ league }} teams</router-link>
     <div>|</div>
-    <router-link :to="teamLink(team[0].team_id)">{{ team[0].team_name }}</router-link>
+    <router-link :to="teamLink(players[0].team_id)">{{ players[0].team_name }}</router-link>
     <div>|</div>
     <div class="link">{{player.name_display_first_last}}</div>
   </template>
@@ -23,13 +23,13 @@
 </template>
 <script>
 
+import { mapState } from 'vuex'
+
 export default {
   name: 'navbar',
-  props: [
-    'player',
-    'team',
-    'league'
-  ],
+  computed: {
+    ...mapState(['players', 'league', 'player', 'teams'])
+  },
   methods: {
     leagueLink (league) {
       return {
