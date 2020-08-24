@@ -36,8 +36,6 @@ export default {
     let playerId = this.$route.params.playerId
 
     this.$store.dispatch('getPlayerById', playerId)
-    this.$store.dispatch('getPlayersByTeam', sessionStorage.getItem('players'))
-    this.$store.dispatch('getTeamsByLeague', sessionStorage.getItem('league'))
   }
 }
 </script>

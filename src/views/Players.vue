@@ -39,7 +39,6 @@ export default {
   async beforeCreate () {
     let teamId = this.$route.params.teamId
     this.$store.dispatch('getPlayersByTeam', teamId)
-    this.$store.dispatch('getTeamsByLeague', sessionStorage.getItem('league'))
   }
 }
 </script>
