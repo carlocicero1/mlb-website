@@ -1,6 +1,6 @@
 <template>
   <div class="players">
-    <h1>{{players[0].team_name}}</h1>
+    <h1 class="team-name">{{players[0].team_name}}</h1>
     <h1>Players</h1>
     <div class='row'>
       <div v-for="(player, i) in players" :key="i" class="col-4 text-center player">
@@ -51,6 +51,11 @@ export default {
   .banner.col-4.text-center.banner{
     display: flex;
     justify-content: center;
+    text-decoration: underline;
+  }
+  .team-name {
+    justify-content: left;
+    margin: 0 0 0 3rem;
     text-decoration: underline;
   }
 </style>

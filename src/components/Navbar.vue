@@ -3,7 +3,7 @@
   <router-link to="/"> Home </router-link>
   <template v-if="this.$route.params.league && !this.$route.params.teamId">
     <div>|</div>
-    <div class="link">{{ league }} teams</div>
+    <div class="link">{{ this.$route.params.league }} teams</div>
     </template>
   <template v-if="this.$route.params.teamId && !this.$route.params.playerId">
     <div>|</div>
