@@ -1,21 +1,21 @@
 <template>
 <div class="navbar">
   <router-link to="/"> Home </router-link>
-  <template v-if="this.$route.params.league">
+  <template v-if="this.$route.params.league && !this.$route.params.teamId">
     <div>|</div>
     <div class="link">{{ league }} teams</div>
     </template>
-  <template v-if="this.$route.params.teamId">
+  <template v-if="this.$route.params.teamId && !this.$route.params.playerId">
     <div>|</div>
-    <router-link :to="leagueLink(league)">{{ league }} teams</router-link>
+    <router-link :to="leagueLink(this.$route.params.league)"> {{ this.$route.params.league }} teams</router-link>
     <div>|</div>
     <div class="link">{{ players[0].team_name }}</div>
   </template>
   <template v-if="this.$route.params.playerId">
     <div>|</div>
-    <router-link :to="leagueLink(league)">{{ league }} teams</router-link>
+    <router-link :to="leagueLink(this.$route.params.league)"> {{ this.$route.params.league }} teams</router-link>
     <div>|</div>
-    <router-link :to="teamLink(players[0].team_id)">{{ players[0].team_name }}</router-link>
+    <router-link :to="teamLink(this.$route.params.teamId)">{{ player.team_name }}</router-link>
     <div>|</div>
     <div class="link">{{player.name_display_first_last}}</div>
   </template>
