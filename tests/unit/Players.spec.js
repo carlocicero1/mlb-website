@@ -1,9 +1,9 @@
 
-    import Player from '@/components/PlayerModal.vue'
+    import PlayerModal from '@/components/PlayerModal.vue'
     import { mount } from'@vue/test-utils'
 
-    test('Awaits API call and returns specified player object based on ID', async () => {
-        const wrapper = mount(Player, {
+    test('Check that player name is displayed and that image is rendered', async () => {
+        const wrapper = mount(PlayerModal, {
             propsData: {
               playerId: '660620',
               fullName: 'Jonathan Arauz'  
@@ -13,12 +13,9 @@
             }
         });
 
-        const $route = `https://content.mlb.com/images/headshots/current/60x60/660620@2x.png`
+        let heading = wrapper.find('h1')
+        let image = wrapper.find('img')
 
-        await wrapper.trigger('click');
-
-        // await axios.get(`https://lookup-service-prod.mlb.com/json/named.player_info.bam?sport_code='mlb'&player_id='660620'`)
-
-        expect(wrapper.vm.$route.path).toBe($route)
-        console.log(wrapper)
+        expect(heading.text()).toEqual('Jonathan Arauz')
+        expect(image.exists()).toBe(true)
     });

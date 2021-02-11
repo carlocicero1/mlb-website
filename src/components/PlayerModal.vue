@@ -1,6 +1,8 @@
 <template>
   <div class="player">
-      <img :src="`https://content.mlb.com/images/headshots/current/60x60/${playerId}@2x.png`">
+      <template v-if="playerId">
+        <img :src="`https://content.mlb.com/images/headshots/current/60x60/${playerId}@2x.png`">
+      </template>  
       <h1>{{ fullName }}</h1>
   </div>
 </template>
